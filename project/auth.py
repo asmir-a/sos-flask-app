@@ -34,6 +34,9 @@ def signup_post():
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
+    phone_number_1 = request.form.get('phone_number_1')
+    phone_number_2 = request.form.get('phone_number_2')
+    phone_number_3 = request.form.get('phone_number_3')
 
     user = User.query.filter_by(email = email).first()
 
@@ -41,7 +44,7 @@ def signup_post():
         flash('Email address already exists')
         return redirect(url_for('auth.signup'))
 
-    new_user = User(email = email, name = name, password = generate_password_hash(password, method = 'sha256'))
+    new_user = User(email = email, name = name, password = generate_password_hash(password, method = 'sha256'), phone_number_1 = phone_number_1, phone_number_2 = phone_number_2, phone_number_3 = phone_number_3)
 
     db.session.add(new_user)
     db.session.commit()
