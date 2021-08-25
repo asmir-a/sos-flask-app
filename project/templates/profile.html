@@ -13,8 +13,8 @@
       Третий номер телефона: {{current_user.phone_number_3}}!
     </h1>
   </div>
-  <button class="button is-danger">
-    <a href = "{{url_for('main.call')}}">SOS</a>
+  <button class="button-sos">
+    <a href = "{{url_for('main.call')}}" class = "link-sos">Позвонить</a>
   </button>
 </div>
 {% endblock %}

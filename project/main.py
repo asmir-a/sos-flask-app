@@ -24,13 +24,14 @@ def call():
         "cache-control" : "no-cache"
     }
     
+    name = current_user.name
     phone_number_1 = current_user.phone_number_1
     phone_number_2 = current_user.phone_number_2
     phone_number_3 = current_user.phone_number_3
 
-    params_and_message_for_api_1 = "recipient=7" + phone_number_1 + "&text=Тест+Напишите+мне+это+Асмир&params%5Bvalidity%5D=1440"
-    params_and_message_for_api_2 = "recipient=7" + phone_number_2 + "&text=Тест+Напишите+мне+это+Асмир&params%5Bvalidity%5D=1440"
-    params_and_message_for_api_3 = "recipient=7" + phone_number_3 + "&text=Тест+Напишите+мне+это+Асмир&params%5Bvalidity%5D=1440"
+    params_and_message_for_api_1 = "recipient=7" + phone_number_1 + "&text=Тест+Компания+qutqarusy:+" + current_user.name + "+может+быть+в+беде+узнайте+все+ли+с+ним+хорошо&params%5Bvalidity%5D=1440"
+    params_and_message_for_api_2 = "recipient=7" + phone_number_2 + "&text=Тест+Компания+qutqarusy:+" + current_user.name + "+может+быть+в+беде+узнайте+все+ли+с+ним+хорошо&params%5Bvalidity%5D=1440"
+    params_and_message_for_api_3 = "recipient=7" + phone_number_3 + "&text=Тест+Компания+qutqarusy:+" + current_user.name + "+может+быть+в+беде+узнайте+все+ли+с+ним+хорошо&params%5Bvalidity%5D=1440"
 
 
     response_for_number_1 = requests.post(url = url_of_message_sending_api, headers=headers_for_api, data = params_and_message_for_api_1.encode('utf-8'))
@@ -41,4 +42,9 @@ def call():
     print(response_for_number_2)
     print(response_for_number_3)
 
-    return render_template('profile.html')
+    print(params_and_message_for_api_1)
+    print(params_and_message_for_api_2)
+    print(params_and_message_for_api_3)
+
+
+    return render_template('profile-modal.html')

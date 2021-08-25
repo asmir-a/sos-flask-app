@@ -14,15 +14,15 @@ def login():
 def login_post():
     email = request.form.get('email')
     password = request.form.get('password')
-    remember = True if request.form.get('remember') else False
+    # remember = True if request.form.get('remember') else False
 
     user = User.query.filter_by(email = email).first()
 
     if not user or not check_password_hash(user.password, password):
-        flash('Please check your login details and try again')
+        flash('Вы ввели неправлиьные данные. Попробуйте Снова.')
         return redirect(url_for('auth.login'))
     
-    login_user(user, remember = remember)
+    login_user(user, remember = True)
     return redirect(url_for('main.profile'))
 
 @auth.route('/signup')
@@ -41,7 +41,7 @@ def signup_post():
     user = User.query.filter_by(email = email).first()
 
     if user:
-        flash('Email address already exists')
+        flash('Эта почта занята')
         return redirect(url_for('auth.signup'))
 
     new_user = User(email = email, name = name, password = generate_password_hash(password, method = 'sha256'), phone_number_1 = phone_number_1, phone_number_2 = phone_number_2, phone_number_3 = phone_number_3)
